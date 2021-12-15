@@ -9,19 +9,16 @@ using namespace std;
 4) const_cast
 5) Что использовать для преобразования родительского класса в дочерний ?
 А дочернего в родительский ? Зачем ?*/
-void preobrazovanue_C(int one, double two) {
-	one = (int)two;
-	two = (double)one;   // явное преобразование
-
-	two = one;
-	one = two; // неявное преобразование
+double preobrazovanue_C(int one, int two) {
+	double a = (double)one / two;
+	return a;
 }
 
-//double static__cast(int one, int two) {
-	//double result = static_cast<double> (one) / two;
-	//return result;
+double static__cast(int one, int two) {
+	double result = static_cast<double> (one) / two;
+	return result;
 
-//}
+}
 int  const__cast(const int* as) {
 	int* sa;
 	sa = const_cast<int*>(as);  // больше не константа!
@@ -82,9 +79,10 @@ int main() {
 	one = &two_2; //указывает на обьект производного класса
 	two = dynamic_cast<A*> (one);
 
-	int x = 10;
+	const int x = 10;
 	cout << const__cast(&x) << endl;
-	//cout << static__cast << endl;
+	cout << static__cast(10,4) << endl;
+	cout << preobrazovanue_C(12, 5) << endl;
 
 
 }
